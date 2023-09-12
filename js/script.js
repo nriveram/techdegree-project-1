@@ -69,8 +69,35 @@ function printQuote() {
   }
   html += `</p>`; // adds the closing tag to the second paragraph 
   document.getElementById('quote-box').innerHTML = html; // writes to the html file
-}
 
+  /*Source: https://www.w3schools.com/jsref/prop_style_backgroundcolor.asp*/
+  // changes the background color to a random color 
+  document.body.style.backgroundColor = randomRGB(getRandomValue); 
+}
+/**
+ * the getRandomValue() is an arrow function from the "The Refactor Challenge – Duplicate Code" 
+ * Javascript Loops by Guil Hernandez video lesson that I'm reusing to complete the extra credit. 
+ * 
+ * In this function, it will generate a random number between 0 to 255. 
+ * @returns {number} - a value between 0 and 255
+ */
+const getRandomValue = () => Math.floor(Math.random() * 256); 
+
+/**
+ * the randomRGB() is an arrow function from the "The Refactor Challenge – Duplicate Code" 
+ * Javascript Loops by Guil Hernandez video lesson that I'm reusing to complete the extra credit. 
+ * 
+ * In this function, it will create a rgb value that contains 3 random numbers generated 
+ * by value(). 
+ * 
+ * @param {value} - a function that is used to generate random rgb values 
+ * @returns {template literal} - string sequence of rgb values 
+ */
+function randomRGB(value) {
+  // creates a template literal with 3 random values
+  const color = `rgb( ${value()}, ${value()}, ${value()})`;
+  return color; 
+}
 
 /***
  * click event listener for the print quote button
