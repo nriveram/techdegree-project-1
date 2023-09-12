@@ -8,7 +8,7 @@ project 1 - A Random Quote Generator
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
 /*** 
- * `quotes` array 
+ * `quotes` array - random quotes from movie/tv show characters from the early 2000s
 ***/
 const quotes = [
   {quote: 'You must always have faith in people. \
@@ -27,30 +27,48 @@ citation: 'The Princess Diaries', year: '2001'},
 ];
 
 
-/***
- * `getRandomQuote` function
-***/
+/**
+ * getRandomQuote() will return a random quote object using the Math.random() to 
+ * generate a random index using the quote array's length. 
+ *
+ * @param {null} null - none
+ * @returns {Object} - returns a random quote object from the quotes array
+ */
 function getRandomQuote() {
+
+  // uses the quote array's length to find a random index 
   const randNum = Math.floor(Math.random() * quotes.length); 
-  return quotes[randNum];
+  return quotes[randNum]; // returns the quote literal 
+
 }
 
 
-/***
- * `printQuote` function
-***/
+/**
+ * printQuote() will use the getRandomQuote() function to retrive a random quote
+ * literal. It will use the random quote to create a template literal containing 
+ * the quote, source, citation, and/or year values. Once the template literal is 
+ * created, it will write onto the html tags on index.html file. 
+ * 
+ * @param {[null]} null - none
+ * @returns {null} - none
+ */
 function printQuote() {
-  let randQuote = getRandomQuote(); 
-  let html = `<p class="quote">${randQuote.quote}</p>
+  let randQuote = getRandomQuote(); // retrives a random quote
+  // creates the first paragraph 
+  let html = `<p class="quote">${randQuote.quote}</p> 
   <p class="source">${randQuote.source}`; 
+  // checks if random quote has a citation 
   if (randQuote.citation) {
+    // if true, adds citation to html variable 
     html += `<span class="citation">${randQuote.citation}</span>`;
   }
+  // checks if random quote has a year 
   if (randQuote.year) {
+    // if true, adds year to the html tag 
     html += `<span class="year">${randQuote.year}</span>`; 
   }
-  html += `</p>`;
-  document.getElementById('quote-box').innerHTML = html; 
+  html += `</p>`; // adds the closing tag to the second paragraph 
+  document.getElementById('quote-box').innerHTML = html; // writes to the html file
 }
 
 
